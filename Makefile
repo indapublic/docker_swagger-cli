@@ -1,5 +1,8 @@
-build:
-	docker build --build-arg NODE_VERSION=$(NODE_VERSION) . -t indapublic/swagger-cli:$(NODE_VERSION)
+IMAGE_NAME ?= indapublic/swagger-cli
+TAG ?= 24
 
-publish:
-	docker push indapublic/swagger-cli:$(NODE_VERSION)
+build:
+	docker build . -t $(IMAGE_NAME):$(TAG)
+
+publish: build
+	docker push $(IMAGE_NAME):$(TAG)
